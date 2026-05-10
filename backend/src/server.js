@@ -9,6 +9,10 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send('🚢 Fathom Marine Backend Running');
+});
+
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/ships', require('./routes/ships'));
