@@ -1,147 +1,477 @@
 # ⚓ Fathom Marine — Maritime Operations & Compliance System
 
-A full-stack web application for managing ship maintenance, safety drills, and fleet compliance monitoring.
+## 📌 Project Overview
+
+Fathom Marine is a full-stack maritime operations and compliance management platform designed to help marine organizations manage:
+
+* Ship maintenance activities
+* Safety drill scheduling and participation
+* Compliance monitoring across ships
+* Crew task management
+
+The system ensures that ships remain operationally safe and compliant with maritime regulations.
 
 ---
 
-## 🚀 Quick Start
+# 🔄 Business Flow of the Application
 
-### Prerequisites
-- Node.js v18+
-- MongoDB (running locally on port 27017)
+## 1. User Authentication Flow
 
-### 1. Backend Setup
+### Admin Login
+
+1. Admin enters email and password.
+2. Backend validates credentials.
+3. JWT token is generated.
+4. Admin is redirected to Admin Dashboard.
+
+### Crew Login
+
+1. Crew member logs in using credentials.
+2. Backend validates user role.
+3. JWT token is issued.
+4. Crew user is redirected to Crew Dashboard.
+
+---
+
+# ⚙️ Admin Workflow
+
+## Ship Management
+
+Admin can:
+
+* Create ships
+* Update ship information
+* View all ships
+* Delete ships
+
+### Flow
+
+Admin Dashboard → Ships Page → Create/Edit Ship → Save to MongoDB
+
+---
+
+## Maintenance Management
+
+Admin creates maintenance tasks for ships.
+
+### Admin Actions
+
+* Create maintenance task
+* Assign task to crew member
+* Set due date
+* Set task priority
+* Monitor task status
+
+### Task Status Flow
+
+Pending → In Progress → Completed
+
+### Flow
+
+Admin Dashboard → Maintenance Page → Create Task → Assign Crew → Save Task
+
+---
+
+## Safety Drill Management
+
+Admin schedules safety drills.
+
+### Admin Actions
+
+* Create drill
+* Assign drill to ships
+* Set drill date
+* Monitor participation
+
+### Flow
+
+Admin Dashboard → Drills Page → Schedule Drill → Assign Ship/Crew
+
+---
+
+# 👨‍✈️ Crew Workflow
+
+## Crew Maintenance Flow
+
+Crew members:
+
+* View assigned tasks
+* Update task status
+* Add comments/notes
+
+### Flow
+
+Crew Dashboard → View Tasks → Update Status → Save Notes
+
+---
+
+## Crew Drill Flow
+
+Crew members:
+
+* View upcoming drills
+* Mark attendance
+* Submit completion
+
+### Flow
+
+Crew Dashboard → Upcoming Drills → Mark Attendance
+
+---
+
+# 📊 Compliance Monitoring Flow
+
+The system automatically calculates compliance.
+
+## Maintenance Compliance
+
+Formula:
+
+Completed Maintenance Tasks / Total Maintenance Tasks × 100
+
+---
+
+## Drill Compliance
+
+Formula:
+
+Completed Drills / Total Scheduled Drills × 100
+
+---
+
+## Overall Compliance
+
+Formula:
+
+(Maintenance Compliance + Drill Compliance) / 2
+
+---
+
+## Non-Compliance Logic
+
+A ship becomes non-compliant if:
+
+* Any maintenance task passes due date without completion
+* Any safety drill is missed
+* Overall compliance drops below 70%
+
+---
+
+# 🏗️ Architecture Decisions
+
+## Frontend Architecture
+
+### Technology Used
+
+* React
+* TypeScript
+* Vite
+* Axios
+* Recharts
+
+### Why React?
+
+React provides:
+
+* Component-based architecture
+* Reusable UI components
+* Fast rendering using Virtual DOM
+* Easy state management with hooks
+
+### Why TypeScript?
+
+TypeScript improves:
+
+* Type safety
+* Code maintainability
+* Error detection during development
+
+### Why Vite?
+
+Vite provides:
+
+* Fast development server
+* Faster builds
+* Better developer experience
+
+---
+
+# Backend Architecture
+
+## Technology Used
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* JWT Authentication
+
+---
+
+## Why Node.js?
+
+Node.js supports:
+
+* Fast API development
+* Non-blocking asynchronous architecture
+* JavaScript on both frontend and backend
+
+---
+
+## Why Express.js?
+
+Express simplifies:
+
+* REST API creation
+* Routing
+* Middleware handling
+* Error handling
+
+---
+
+## Why MongoDB?
+
+MongoDB was selected because:
+
+* Flexible document structure
+* Easy handling of nested data
+* Good scalability
+* Suitable for ship activities and attendance records
+
+---
+
+## Why Mongoose?
+
+Mongoose provides:
+
+* Schema validation
+* Cleaner MongoDB queries
+* Virtual properties
+* Better data modeling
+
+---
+
+# 🔐 Authentication & Authorization
+
+## JWT Authentication
+
+The system uses JWT for authentication.
+
+### Flow
+
+1. User logs in
+2. Backend generates JWT token
+3. Token stored on frontend
+4. Token attached in protected API requests
+5. Middleware validates token
+
+---
+
+## Role-Based Access Control (RBAC)
+
+### Admin Permissions
+
+* Manage ships
+* Manage users
+* Create tasks
+* Schedule drills
+* View compliance dashboard
+
+### Crew Permissions
+
+* View assigned tasks
+* Update task status
+* Mark drill attendance
+* Add notes/comments
+
+---
+
+# 🗄️ Database Design
+
+## Collections Used
+
+### Users Collection
+
+Stores:
+
+* Name
+* Email
+* Password
+* Role
+* Assigned ship
+
+### Ships Collection
+
+Stores:
+
+* Ship name
+* Registration details
+* Assigned crew
+
+### Maintenance Tasks Collection
+
+Stores:
+
+* Task title
+* Assigned crew
+* Ship
+* Status
+* Due date
+* Notes
+
+### Safety Drills Collection
+
+Stores:
+
+* Drill type
+* Scheduled date
+* Ship assignment
+* Attendance
+
+---
+
+# 📡 API Design
+
+## REST API Structure
+
+### Authentication
+
+* POST /api/auth/login
+* POST /api/auth/register
+
+### Ships
+
+* GET /api/ships
+* POST /api/ships
+
+### Maintenance
+
+* GET /api/maintenance
+* POST /api/maintenance
+* PUT /api/maintenance/:id
+
+### Drills
+
+* GET /api/drills
+* POST /api/drills
+* PUT /api/drills/:id/attend
+
+### Compliance
+
+* GET /api/compliance
+
+---
+
+# 🚀 Setup Steps
+
+## Backend Setup
 
 ```bash
 cd backend
 npm install
-npm run seed      # Seeds DB with ships, users, tasks, drills
-npm run dev       # Starts API on http://localhost:5000
+npm run seed
+npm run dev
 ```
 
-### 2. Frontend Setup
+Backend runs on:
+[http://localhost:5000](http://localhost:5000)
+
+---
+
+## Frontend Setup
 
 ```bash
 cd frontend
 npm install
-npm run dev       # Starts UI on http://localhost:5173
+npm run dev
+```
+
+Frontend runs on:
+[http://localhost:5173](http://localhost:5173)
+
+---
+
+# 🔑 Environment Variables
+
+## Backend .env
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_secret
 ```
 
 ---
 
-## 🔐 Demo Login Credentials
+# 🌐 Deployment
 
-| Role  | Email                        | Password  |
-|-------|------------------------------|-----------|
-| Admin | admin@fathommarine.com       | admin123  |
-| Crew  | john@fathommarine.com        | crew123   |
-| Crew  | sarah@fathommarine.com       | crew123   |
-| Crew  | carlos@fathommarine.com      | crew123   |
-| Crew  | emma@fathommarine.com        | crew123   |
+## Frontend Deployment
 
----
+* Vercel
 
-## 🏗️ Architecture
+## Backend Deployment
 
-```
-fathom-marine/
-├── backend/                  # Node.js + Express + MongoDB
-│   └── src/
-│       ├── config/db.js      # MongoDB connection
-│       ├── models/           # Mongoose schemas
-│       │   ├── Ship.js
-│       │   ├── User.js
-│       │   ├── MaintenanceTask.js
-│       │   └── SafetyDrill.js
-│       ├── routes/           # REST API endpoints
-│       │   ├── auth.js       # Login / Register
-│       │   ├── ships.js      # Ship CRUD
-│       │   ├── users.js      # User management
-│       │   ├── maintenance.js# Maintenance task CRUD
-│       │   ├── drills.js     # Safety drill CRUD + attendance
-│       │   └── compliance.js # Compliance calculation
-│       ├── middleware/auth.js # JWT + role guard
-│       ├── utils/seed.js     # DB seeder
-│       └── server.js         # Express entry point
-│
-└── frontend/                 # React + TypeScript + Vite
-    └── src/
-        ├── api/              # Axios client + service functions
-        ├── context/          # AuthContext (JWT, role)
-        ├── components/       # Sidebar, Topbar
-        └── pages/
-            ├── LoginPage.tsx
-            ├── Dashboard.tsx        # Admin compliance overview
-            ├── MaintenancePage.tsx  # Admin task management
-            ├── DrillsPage.tsx       # Admin drill scheduling
-            ├── ShipsPage.tsx        # Admin ship management
-            ├── UsersPage.tsx        # Admin user management
-            ├── CrewDashboard.tsx    # Crew home
-            ├── CrewTasksPage.tsx    # Crew task view
-            └── CrewDrillsPage.tsx   # Crew drill schedule
-```
+* Render
+
+## Database
+
+* MongoDB Atlas
 
 ---
 
-## 📡 API Endpoints
+# ✅ Features Implemented
 
-| Method | Endpoint                        | Auth     | Description                |
-|--------|---------------------------------|----------|----------------------------|
-| POST   | /api/auth/login                 | Public   | Login, returns JWT         |
-| POST   | /api/auth/register              | Public   | Create account             |
-| GET    | /api/ships                      | Any      | List all ships             |
-| POST   | /api/ships                      | Admin    | Create ship                |
-| GET    | /api/maintenance                | Any      | List tasks (filter support)|
-| POST   | /api/maintenance                | Admin    | Create maintenance task    |
-| PUT    | /api/maintenance/:id            | Any      | Update task / add note     |
-| GET    | /api/drills                     | Any      | List drills                |
-| POST   | /api/drills                     | Admin    | Schedule drill             |
-| PUT    | /api/drills/:id/attend          | Crew     | Mark drill attendance      |
-| GET    | /api/compliance                 | Any      | Fleet compliance stats     |
-| GET    | /api/users                      | Admin    | List all users             |
+## Core Features
 
----
+* Ship maintenance management
+* Safety drill scheduling
+* Crew task management
+* Compliance monitoring
+* JWT authentication
+* Role-based access control
+* Dashboard analytics
 
-## ⚙️ Architecture Decisions
+## Bonus Features
 
-### Why MongoDB?
-- Flexible document model suits nested structures (participants, notes)
-- Mongoose virtuals cleanly compute `isOverdue` / `isMissed` on the fly
-
-### Why JWT + role middleware?
-- Stateless auth scales horizontally
-- `adminOnly` middleware enforces RBAC at the route level
-- Crew users automatically see only their own assigned tasks
-
-### Compliance Calculation
-```
-Maintenance Compliance % = (Completed Tasks / Total Tasks) × 100
-Drill Compliance %       = (Completed Drills / Total Drills) × 100
-Overall Compliance %     = Average of both
-Non-compliant            = Overall < 70% or any item past due
-```
-
-### Frontend State
-- No heavy state library — React hooks + context are sufficient for this scale
-- Role-based routing: Admins → `/dashboard`, Crew → `/crew`
+* Charts using Recharts
+* Dark mode UI
+* Filters and search
+* Overdue alerts
+* Responsive design
 
 ---
 
-## ✅ Features Implemented
+# 📈 Future Improvements
 
-### Core
-- [x] Ship maintenance task CRUD (Admin)
-- [x] Task assignment to crew members
-- [x] Task status: Pending → In Progress → Completed
-- [x] Crew can view tasks, update status, add notes
-- [x] Safety drill scheduling (Admin)
-- [x] Crew attendance marking
-- [x] Compliance dashboard with charts
-- [x] Overdue task & missed drill highlighting
+* Real-time notifications
+* Docker containerization
+* Email alerts
+* Audit logs
+* Multi-language support
+* Advanced analytics dashboard
 
-### Bonus
-- [x] Role-based access control (Admin / Crew)
-- [x] Filters (by ship, status, priority, type, date)
-- [x] Overdue notifications & alerts
-- [x] Charts (BarChart, PieChart via Recharts)
-- [x] Premium dark-mode UI
+---
+
+# 👨‍💻 Tech Stack
+
+## Frontend
+
+* React
+* TypeScript
+* Vite
+* Axios
+* Recharts
+
+## Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* JWT
+
+---
+
+# 📌 Conclusion
+
+Fathom Marine provides a scalable and efficient platform for managing maritime maintenance operations and compliance tracking. The application demonstrates full-stack development concepts including REST APIs, authentication, database design, role-based access control, compliance calculation, and responsive frontend architecture.
