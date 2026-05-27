@@ -472,6 +472,13 @@ JWT_SECRET=your_secret
 
 ---
 
+OUTPUT
+<img width="1916" height="1047" alt="image" src="https://github.com/user-attachments/assets/4a6087a2-5113-4958-855b-568f4a3e212a" />
+<img width="1919" height="1080" alt="image" src="https://github.com/user-attachments/assets/288dc6b3-bf4b-4587-bbe6-28988cf6d85c" />
+<img width="1902" height="1069" alt="image" src="https://github.com/user-attachments/assets/1d946118-72ff-4a57-974f-faa95ac277cc" />
+<img width="1917" height="1076" alt="image" src="https://github.com/user-attachments/assets/aeba4211-cd35-4c16-a94d-b403e1774c32" />
+<img width="1915" height="1088" alt="image" src="https://github.com/user-attachments/assets/85e5b881-c1dc-4c2f-8756-4e46773289c6" />
+
 # 📌 Conclusion
 
 Fathom Marine provides a scalable and efficient platform for managing maritime maintenance operations and compliance tracking. The application demonstrates full-stack development concepts including REST APIs, authentication, database design, role-based access control, compliance calculation, and responsive frontend architecture.
