@@ -473,7 +473,8 @@ JWT_SECRET=your_secret
 ---
 
 OUTPUT
-<img width="1916" height="1047" alt="image" src="https://github.com/user-attachments/assets/4a6087a2-5113-4958-855b-568f4a3e212a" />
+<img width="1916" height="1072" alt="image" src="https://github.com/user-attachments/assets/3bf23fed-6d7a-406b-92d0-4caba9ca2725" />
+<img width="1903" height="1088" alt="image" src="https://github.com/user-attachments/assets/47d87b63-8fd3-4ecf-b3d9-d79d46688430" />
 <img width="1919" height="1080" alt="image" src="https://github.com/user-attachments/assets/288dc6b3-bf4b-4587-bbe6-28988cf6d85c" />
 <img width="1902" height="1069" alt="image" src="https://github.com/user-attachments/assets/1d946118-72ff-4a57-974f-faa95ac277cc" />
 <img width="1917" height="1076" alt="image" src="https://github.com/user-attachments/assets/aeba4211-cd35-4c16-a94d-b403e1774c32" />
